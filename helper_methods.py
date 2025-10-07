@@ -4,7 +4,13 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 
-
+def print_schema(dataframe: pd.DataFrame):
+    print('~~~~~~dataframe schema~~~~~~')
+    print(f"Dataframe shape: {dataframe.shape} | Dataframe length: {len(dataframe)}")
+    print('Column labels: ')
+    print(dataframe.columns)
+    print('Dataframe head: ')
+    print(f"{dataframe.head()}")
 # Encode text values to dummy variables(i.e. [1,0,0],[0,1,0],[0,0,1] for red,green,blue)
 def encode_text_dummy(df, name):
     dummies = pd.get_dummies(df[name])
