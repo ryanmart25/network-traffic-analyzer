@@ -11,6 +11,13 @@ def print_schema(dataframe: pd.DataFrame):
     print(dataframe.columns)
     print('Dataframe head: ')
     print(f"{dataframe.head()}")
+def print_column(dataframe: pd.DataFrame, columns: str | list[str]):
+    if isinstance(columns, list):
+        for i, label in enumerate(columns):
+            print(f"column {i}")
+            print(dataframe[label])
+    else:
+        print(dataframe[columns])
 # Encode text values to dummy variables(i.e. [1,0,0],[0,1,0],[0,0,1] for red,green,blue)
 def encode_text_dummy(df, name):
     dummies = pd.get_dummies(df[name])
