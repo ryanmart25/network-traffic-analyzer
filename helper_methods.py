@@ -3,6 +3,21 @@ from sklearn import preprocessing
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
+import os
+def plot_losses(history, base_path, iteration:int):
+    # Plot training & validation loss over epochs
+    plt.plot(history.history["loss"], label="Training Loss")
+    plt.plot(history.history["val_loss"], label="Validation Loss")
+    plt.ylim(bottom=0.0, top=1.0)
+    plt.xlabel("Epoch")
+    plt.ylabel("Loss")
+    plt.title("Training vs. Validation Loss")
+    plt.legend()
+    plt.savefig(
+        os.path.join(base_path, f"training-validiation-loss--epoch---Model {iteration}")
+    )
+    plt.close()
+
 
 def print_schema(dataframe: pd.DataFrame):
     print('~~~~~~dataframe schema~~~~~~')
@@ -108,4 +123,3 @@ def encode_numeric_range(df, name, normalized_low=-1, normalized_high=1,
 
     df[name] = ((df[name] - data_low) / (data_high - data_low)) \
                * (normalized_high - normalized_low) + normalized_low
-
